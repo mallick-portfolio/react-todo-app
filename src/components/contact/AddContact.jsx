@@ -12,6 +12,10 @@ const AddContact = ({ getContact }) => {
   };
   const handleSubmit = (event) => {
     event.preventDefault();
+
+    const contactData = JSON.parse(localStorage.getItem("contacts"));
+    console.log(contactData);
+
     if (name === "" || email === "") {
       alert("please provide name and email");
       return;
@@ -22,6 +26,9 @@ const AddContact = ({ getContact }) => {
   };
   return (
     <div>
+      <Link className="btn btn-info mb-3" to="/">
+        Go Home
+      </Link>
       <form onSubmit={handleSubmit}>
         <div className="form-floating  mb-3">
           <input
@@ -45,9 +52,7 @@ const AddContact = ({ getContact }) => {
           />
           <label htmlFor="floatingInput">Email address</label>
         </div>
-        <Link to="/">
-          <button className="btn btn-primary">Add Contact</button>
-        </Link>
+        <button className="btn btn-primary">Add Contact</button>
       </form>
     </div>
   );
