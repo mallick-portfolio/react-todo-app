@@ -1,7 +1,6 @@
 import AddContact from "./components/contact/AddContact";
 import ContactList from "./components/contact/ContactList";
 import Header from "./components/header/Header";
-
 import { useEffect, useState } from "react";
 import { Route, Routes } from "react-router-dom";
 

@@ -2,7 +2,8 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { v4 as uuidv4 } from "uuid";
 let data = {};
-const AddContact = ({ getContact }) => {
+const AddContact = (props) => {
+  const { getContact } = props;
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   data = {
@@ -14,10 +15,16 @@ const AddContact = ({ getContact }) => {
     event.preventDefault();
 
     const contactData = JSON.parse(localStorage.getItem("contacts"));
-    console.log(contactData);
+
+    const findName = contactData.find(
+      (contact) => contact.name === name || contact.email === email
+    );
 
     if (name === "" || email === "") {
       alert("please provide name and email");
+      return;
+    } else if (findName !== undefined) {
+      alert("the name already exist please give me another name");
       return;
     }
     getContact(data);
